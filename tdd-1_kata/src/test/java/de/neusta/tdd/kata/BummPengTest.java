@@ -1,15 +1,9 @@
 package de.neusta.tdd.kata;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
-import de.neusta.tdd.kata.BummPeng;
+import static org.assertj.core.api.Assertions.*;
 
 public class BummPengTest {
 
@@ -19,72 +13,60 @@ public class BummPengTest {
     private BummPeng bummPeng = new BummPeng();
 
     @Test
-    public void testSayOne() throws Exception {
-	assertEquals("1", bummPeng.say(1));
+    public void testSayOne() {
+        assertThat(bummPeng.say(1)).isEqualTo("1)");
     }
 
     @Test
-    public void testSayTwo() throws Exception {
-	assertEquals("2", bummPeng.say(2));
+    public void testSayTwo() {
+        assertThat(bummPeng.say(2)).isEqualTo("2");
     }
 
     @Test
-    public void testSayFour() throws Exception {
-	assertEquals("4", bummPeng.say(4));
+    public void testSayFour() {
+        assertThat(bummPeng.say(4)).isEqualTo("4");
     }
 
     @Test
-    public void testSayBumm() throws Exception {
-	assertEquals(BUMM, bummPeng.say(3));
-	assertEquals(BUMM, bummPeng.say(6));
+    public void testSayBumm() {
+        assertThat(bummPeng.say(3)).isEqualTo(BUMM);
+        assertThat(bummPeng.say(6)).isEqualTo(BUMM);
     }
 
     @Test
-    public void testPeng() throws Exception {
-	assertThat(bummPeng.say(5)).isEqualTo(PENG);
-	assertThat(bummPeng.say(10)).isEqualTo(PENG);
+    public void testPeng() {
+        assertThat(bummPeng.say(5)).isEqualTo(PENG);
+        assertThat(bummPeng.say(10)).isEqualTo(PENG);
     }
 
     @Test
-    public void testSayBummPeng() throws Exception {
-	assertThat(bummPeng.say(15)).isEqualTo(BUMM_PENG);
-	assertThat(bummPeng.say(30)).isEqualTo(BUMM_PENG);
+    public void testSayBummPeng() {
+        assertThat(bummPeng.say(15)).isEqualTo(BUMM_PENG);
+        assertThat(bummPeng.say(30)).isEqualTo(BUMM_PENG);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testSayZeroWithJunit() throws Exception {
-	bummPeng.say(0);
+
+    public void testSayZeroWithJunitAssert() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> bummPeng.say(0));
     }
 
     @Test
     public void testSayZeroWithTryCatch() throws Exception {
-	try {
-	    bummPeng.say(0);
-	    fail("exception expected");
-	} catch (Exception e) {
-	    assertThat(e).isInstanceOf(IllegalArgumentException.class);
-	    assertThat(e.getMessage()).isEqualTo("number must be positive");
-	}
-    }
-
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
-
-    @Test
-    public void testSayZeroWithJunitRule() throws Exception {
-	expectedException.expect(IllegalArgumentException.class);
-	expectedException.expectMessage("number must be positive");
-
-	bummPeng.say(0);
+        try {
+            bummPeng.say(0);
+            fail("exception expected");
+        } catch (final Exception e) {
+            assertThat(e).isInstanceOf(IllegalArgumentException.class);
+            assertThat(e.getMessage()).isEqualTo("number must be positive");
+        }
     }
 
     @Test
     public void testSayZeroWithAssertJ() throws Exception {
 
-	assertThatExceptionOfType(IllegalArgumentException.class)
-		.isThrownBy(() -> bummPeng.say(0))
-		.withMessage("number must be positive");
-
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> bummPeng.say(0))
+                .withMessage("number must be positive");
     }
 
 }
