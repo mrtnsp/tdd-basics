@@ -14,7 +14,7 @@ public class BummPengTest {
 
     @Test
     public void testSayOne() {
-        assertThat(bummPeng.say(1)).isEqualTo("1)");
+        assertThat(bummPeng.say(1)).isEqualTo("1");
     }
 
     @Test
@@ -45,13 +45,13 @@ public class BummPengTest {
         assertThat(bummPeng.say(30)).isEqualTo(BUMM_PENG);
     }
 
-
+    @Test
     public void testSayZeroWithJunitAssert() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> bummPeng.say(0));
     }
 
     @Test
-    public void testSayZeroWithTryCatch() throws Exception {
+    public void testSayZeroWithTryCatch() {
         try {
             bummPeng.say(0);
             fail("exception expected");
@@ -62,7 +62,7 @@ public class BummPengTest {
     }
 
     @Test
-    public void testSayZeroWithAssertJ() throws Exception {
+    public void testSayZeroWithAssertJ() {
 
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> bummPeng.say(0))
