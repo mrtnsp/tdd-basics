@@ -1,38 +1,38 @@
 package de.neusta.tdd.mocks;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import org.junit.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class CustomerValidatorTest {
+class CustomerValidatorTest {
 
     @Test
-    public void testValidCustomer() throws Exception {
+    void testValidCustomer() {
 
-	Customer customer = new Customer("M", "S", LocalDate.now());
-	assertThat(new CustomerValidator().validate(customer)).isTrue();
+        final Customer customer = new Customer("M", "S", LocalDate.now());
+        assertThat(new CustomerValidator().validate(customer)).isTrue();
 
     }
 
     @Test
-    public void testInvalidCustomerNoFirstName() throws Exception {
+    void testInvalidCustomerNoFirstName() {
 
-	assertThat(new CustomerValidator()
-		.validate(new Customer("", "S", LocalDate.now()))).isFalse();
-	assertThat(new CustomerValidator()
-		.validate(new Customer(null, "S", LocalDate.now()))).isFalse();
+        assertThat(new CustomerValidator()
+                .validate(new Customer("", "S", LocalDate.now()))).isFalse();
+        assertThat(new CustomerValidator()
+                .validate(new Customer(null, "S", LocalDate.now()))).isFalse();
 
     }
 
     @Test
-    public void testInvalidCustomerNoLastName() throws Exception {
+    void testInvalidCustomerNoLastName() {
 
-	assertThat(new CustomerValidator()
-		.validate(new Customer("M", "", LocalDate.now()))).isFalse();
-	assertThat(new CustomerValidator()
-		.validate(new Customer("M", null, LocalDate.now()))).isFalse();
+        assertThat(new CustomerValidator()
+                .validate(new Customer("M", "", LocalDate.now()))).isFalse();
+        assertThat(new CustomerValidator()
+                .validate(new Customer("M", null, LocalDate.now()))).isFalse();
 
     }
 

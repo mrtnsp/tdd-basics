@@ -1,19 +1,16 @@
 package de.neusta.tdd.mocks;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import de.neusta.tdd.mocks.adapter.LegacyRegistrationAdapter;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import de.neusta.tdd.mocks.adapter.LegacyRegistrationAdapter;
+import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
-public class LegacyServiceTest {
+@ExtendWith(MockitoExtension.class)
+class LegacyServiceTest {
 
     @Mock
     private LegacyRegistrationAdapter adapter;
@@ -22,13 +19,13 @@ public class LegacyServiceTest {
     private LegacyService service;
 
     @Test
-    public void testName() throws Exception {
-	Customer customer = mock(Customer.class);
-	when(adapter.register(customer))
-		.thenReturn(RegistrationState.REGISTERED);
+    void testName() {
+        final Customer customer = mock(Customer.class);
+        when(adapter.register(customer))
+                .thenReturn(RegistrationState.REGISTERED);
 
-	service.register(customer);
+        service.register(customer);
 
-	verify(adapter).register(customer);
+        verify(adapter).register(customer);
     }
 }
