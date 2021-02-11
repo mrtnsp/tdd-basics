@@ -1,4 +1,5 @@
-import de.neusta.tdd.RingBuffer;
+package de.neusta.tdd;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

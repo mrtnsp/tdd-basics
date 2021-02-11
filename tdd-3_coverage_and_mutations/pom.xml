@@ -19,11 +19,15 @@
         <junit-jupiter.version>5.7.1</junit-jupiter.version>
         <jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
         <maven-jacoco-plugin.version>0.8.6</maven-jacoco-plugin.version>
+        <pitest-maven.version>1.5.2</pitest-maven.version>
+        <pitest-junit5-plugin.version>0.12</pitest-junit5-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
 
         <!--  coverage should be 100% -  we do TDD-->
         <jacoco.min.line.coverage>1</jacoco.min.line.coverage>
         <jacoco.min.branch.coverage>1</jacoco.min.branch.coverage>
+
+        <pitest-maven.mutationThreshold>95</pitest-maven.mutationThreshold>
     </properties>
 
     <dependencies>
@@ -106,6 +110,39 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>${pitest-maven.version}</version>
+                <configuration>
+                    <mutationThreshold>${pitest-maven.mutationThreshold}</mutationThreshold>
+                    <excludedMethods>
+                        <param>createModificationsFromProject</param>
+                    </excludedMethods>
+                    <outputFormats>
+                        <outputFormat>XML</outputFormat>
+                        <outputFormat>HTML</outputFormat>
+                    </outputFormats>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-junit5-plugin</artifactId>
+                        <version>${pitest-junit5-plugin.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>mutations</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>mutationCoverage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
