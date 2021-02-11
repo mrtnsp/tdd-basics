@@ -1,20 +1,23 @@
 # tdd-basics
-Simple java examples and exercises for tdd beginners
+maven setup for a TDD kata quick start.
 
+## Frameworks Used##
 
-## Frameworks ##
-
-* https://joel-costigliola.github.io/assertj/
-* https://github.com/junit-team/junit4/wiki/Getting-started
+* https://assertj.github.io/doc/
+* https://junit.org/junit5/
 * http://site.mockito.org/
 
+## Helpful Eclipse Plugins ##
 
-## eclipse Plugins ##
-
-* mousefeed -  shows Keyboard Shortcuts
+* mousefeed - shows Keyboard Shortcuts, when you use your mouse
 * moreunit - TDD support for eclipse (try Ctrl+U / Ctrl+J / Ctrl+R)
 * eclemma  - test coverage
-* infinitest - automatic test execution on file change
+* infinitest - automatic test execution on file change (may (will!) slow down your machine on bigger projects, but is fine for katas, etc)
+
+## Helpful IDEA Plugins:
+
+* Key Promoter X - shows Keyboard Shortcuts, when you use your mouse
+* infinitest  automatic test execution on file change
 
 ## coding dojos ##
 * http://codekata.com/
